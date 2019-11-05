@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TextEditor.Model.Commands
 {
-    class Undo
+    class Undo : ICommand
     {
+        public void execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

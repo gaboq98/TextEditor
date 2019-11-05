@@ -8,5 +8,6 @@ namespace TextEditor.Model.Commands
 {
     interface ICommand
     {
+        void execute();
     }
 }

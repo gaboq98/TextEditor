@@ -46,11 +46,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controller\CommandController.cs" />
+    <Compile Include="Model\Commands\CommandManager.cs" />
+    <Compile Include="Model\Commands\Copy.cs" />
+    <Compile Include="Model\Commands\Cut.cs" />
+    <Compile Include="Model\Commands\ICommand.cs" />
+    <Compile Include="Model\Commands\New.cs" />
+    <Compile Include="Model\Commands\Open.cs" />
+    <Compile Include="Model\Commands\Paste.cs" />
+    <Compile Include="Model\Commands\Redo.cs" />
+    <Compile Include="Model\Commands\Save.cs" />
+    <Compile Include="Model\Commands\SaveAs.cs" />
+    <Compile Include="Model\Commands\Undo.cs" />
+    <Compile Include="Model\FileManager\FileLoader\CsvFileLoader.cs" />
+    <Compile Include="Model\FileManager\FileLoader\IFileLoader.cs" />
+    <Compile Include="Model\FileManager\FileLoader\JsonFileLoader.cs" />
+    <Compile Include="Model\FileManager\FileLoader\PdfFileLoader.cs" />
+    <Compile Include="Model\FileManager\FileLoader\TabFileLoader.cs" />
+    <Compile Include="Model\FileManager\FileLoader\TxtFileLoader.cs" />
+    <Compile Include="Model\FileManager\FileLoader\XmlFileLoader.cs" />
+    <Compile Include="Model\FileManager\FileManager.cs" />
+    <Compile Include="Model\FileManager\FileSaver\CsvFileSaver.cs" />
+    <Compile Include="Model\FileManager\FileSaver\IFileSaver.cs" />
+    <Compile Include="Model\FileManager\FileSaver\JsonFileSaver.cs" />
+    <Compile Include="Model\FileManager\FileSaver\PdfFileSaver.cs" />
+    <Compile Include="Model\FileManager\FileSaver\TabFileSaver.cs" />
+    <Compile Include="Model\FileManager\FileSaver\TxtFileSaver.cs" />
+    <Compile Include="Model\FileManager\FileSaver\XmlFileSaver.cs" />
+    <Compile Include="Model\Memento\Caretaker.cs" />
+    <Compile Include="Model\Memento\Memento.cs" />
+    <Compile Include="Model\Memento\Originator.cs" />
+    <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +93,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,5 +109,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

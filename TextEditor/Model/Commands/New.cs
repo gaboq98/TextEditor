@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TextEditor.Model.Commands
 {
-    class New
+    class New : ICommand
     {
+        public void execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

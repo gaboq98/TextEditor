@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextEditor.Model.FileManager;
 
 namespace TextEditor.Model.Commands
 {
@@ -10,7 +11,7 @@ namespace TextEditor.Model.Commands
     {
         private List<string> commandArgs;
 
-        public SaveAs(List<string> commandArgs)
+        public SaveAs(List<string> commandArgs, FilesManager fileManager)
         {
             this.commandArgs = commandArgs;
         }

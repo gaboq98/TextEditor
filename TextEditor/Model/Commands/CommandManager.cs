@@ -20,6 +20,7 @@ namespace TextEditor.Model.Commands
             commandArgs = new List<string>();
             caretaker = new Caretaker();
             originator = new Originator();
+            fileManager = new FilesManager();
         }
 
         public Originator GetOriginator()
@@ -58,7 +59,7 @@ namespace TextEditor.Model.Commands
                     break;
                 case "open":
                     Console.WriteLine("Case 4");
-                    command = new Open(commandArgs);
+                    command = new Open(commandArgs, fileManager);
                     break;
                 case "paste":
                     Console.WriteLine("Case 5");
@@ -70,11 +71,11 @@ namespace TextEditor.Model.Commands
                     break;
                 case "save":
                     Console.WriteLine("Case 7");
-                    command = new Save(commandArgs);
+                    command = new Save(commandArgs, fileManager);
                     break;
                 case "saveas":
                     Console.WriteLine("Case 8");
-                    command = new SaveAs(commandArgs);
+                    command = new SaveAs(commandArgs, fileManager);
                     break;
                 case "undo":
                     Console.WriteLine("Case 9");

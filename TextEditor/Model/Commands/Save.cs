@@ -10,7 +10,7 @@ namespace TextEditor.Model.Commands
     {
         private List<string> commandArgs;
 
-        public Save(List<string> commandArgs)
+        public Save(List<string> commandArgs, FileManager.FilesManager fileManager)
         {
             this.commandArgs = commandArgs;
         }

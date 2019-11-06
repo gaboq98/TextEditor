@@ -8,73 +8,85 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TextEditor.Controller;
+using TextEditor.Model.Commands;
 
 namespace TextEditor
 {
     public partial class MainForm : Form
     {
 
-        private CommandController commandController { get; set; }
+        private CommandController controller { get; set; }
 
         public MainForm()
         {
             InitializeComponent();
+            controller = new CommandController();
         }
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Unsaved chages will be disarted");
+            controller.NewCommand();
             richTextBox.Clear();
         }
 
         private void buttonOpen_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Unsaved chages will be disarted");
+            
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                richTextBox.LoadFile(openFileDialog1.FileName);
+                string text = controller.OpenCommand(openFileDialog1.FileName, openFileDialog1.FilterIndex);
+                richTextBox.Text = text;
             }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            richTextBox.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.PlainText);
+            controller.SaveCommand();
         }
 
         private void buttonSaveAs_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                richTextBox.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.RichText);
+                controller.OpenCommand(saveFileDialog1.FileName, saveFileDialog1.FilterIndex);
             }
         }
 
         private void buttonCopy_Click(object sender, EventArgs e)
         {
+            controller.CopyCommand(richTextBox.SelectedText);
             richTextBox.Copy();
         }
 
         private void buttonCut_Click(object sender, EventArgs e)
         {
+            controller.CutCommand(richTextBox.SelectedText);
             richTextBox.Cut();
         }
 
         private void buttonPaste_Click(object sender, EventArgs e)
         {
+            string text = controller.PasteCommand();
             richTextBox.Paste();
         }
 
         private void buttonUndo_Click(object sender, EventArgs e)
         {
-            richTextBox.Redo();
+            string text = controller.UndoCommand();
+            richTextBox.Text = text;
         }
 
         private void buttonRedo_Click(object sender, EventArgs e)
         {
-            richTextBox.Undo();
+            string text = controller.RedoCommand();
+            richTextBox.Text = text;
         }
 
         private void buttonFont_Click(object sender, EventArgs e)
         {
-            if(fontDialog1.ShowDialog() == DialogResult.OK)
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
             {
                 richTextBox.SelectionFont = fontDialog1.Font;
             }
@@ -87,5 +99,11 @@ namespace TextEditor
                 richTextBox.SelectionColor = colorDialog1.Color;
             }
         }
+
+        private void textChangeEvent(object sender, EventArgs e)
+        {
+            controller.setState(richTextBox.Text);
+        }
+
     }
 }

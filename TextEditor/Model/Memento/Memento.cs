@@ -8,5 +8,16 @@ namespace TextEditor.Model.Memento
 {
     class Memento
     {
+        private String state;
+
+        public Memento(string state)
+        {
+            this.state = state;
+        }
+
+        public String getState()
+        {
+            return state;
+        }
     }
 }

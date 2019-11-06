@@ -1,4 +1,5 @@
-﻿using iTextSharp.text;
+﻿using Aspose.Words;
+using Aspose.Words.Saving;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace TextEditor.Model.FileSaver
     {
         public void save(string txt, string file)
         {
+            /*
             Document doc = new Document(PageSize.A4);
             var output = new FileStream(file, FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
@@ -23,6 +25,26 @@ namespace TextEditor.Model.FileSaver
 
             doc.Close();
             writer.Close();
+            */
+            using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(txt)))
+            {
+                Document doc = new Document(stream);
+
+                PdfSaveOptions pdfSaveOptions = new PdfSaveOptions
+                {
+                    SaveFormat = SaveFormat.Pdf
+
+                };
+
+                using (MemoryStream streamText = new MemoryStream())
+                {
+                    // save will convert to a pdf
+                    doc.Save(streamText, pdfSaveOptions);
+                    doc.Save(file, pdfSaveOptions);
+                    //return streamText.ToArray();
+                }
+            }
+
         }
     }
 }

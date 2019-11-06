@@ -3,72 +3,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TextEditor.Model.Memento
 {
     class Caretaker
     {
-        private List<Memento> mementoList = new List<Memento>();
 
-        private int currentIndex;
+        Stack<Memento> undoList = new Stack<Memento>();
+        Stack<Memento> redoList = new Stack<Memento>();
+        Memento lastUndo;
+        Memento lastRedo;
 
         public Caretaker()
         {
-            currentIndex = -1;
         }
 
         public void add(Memento state)
         {
-            mementoList.Add(state);
-            currentIndex = mementoList.Count - 1;
-        }
-
-        public Memento get(int index)
-        {
-            if(!(index < mementoList.Count))
-            {
-                return mementoList.ElementAt(index);
-            }
-            return getCurrent();
-        }
-
-        public Memento getCurrent()
-        {
-            return mementoList.ElementAt(currentIndex);
+            undoList.Push(state);
         }
 
         public Memento getPrevious()
         {
-            int index = currentIndex - 1;
-            if (!(index < 0))
+            Memento aux;
+            try
             {
-                currentIndex = index;
-                return mementoList.ElementAt(currentIndex);
+                undoList.Pop();
+                aux = undoList.Pop();
+                redoList.Push(aux);
+            } catch
+            {
+                MessageBox.Show("No more undo");
+                aux = new Memento("") ;
             }
-            return getCurrent();
+            
+            return aux;
         }
 
         public Memento getNext()
         {
-            int index = currentIndex + 1;
-            if (!(index >= mementoList.Count))
+            Memento aux;
+            try
             {
-                currentIndex = index;
-                return mementoList.ElementAt(currentIndex);
+                redoList.Pop();
+                aux = redoList.Pop();
+                redoList.Push(aux);
             }
-            return getCurrent();
-        }
-
-        public void clear()
-        {
-            List<Memento> newList = new List<Memento>();
-            for(int i = 0; i < currentIndex; i++)
+            catch
             {
-                newList.Add(mementoList.ElementAt(i));
+                MessageBox.Show("No more Redo");
+                aux = new Memento("");
             }
-            mementoList = newList;
-        }
 
+            return aux;
+        }
 
     }
 }

@@ -15,6 +15,7 @@ namespace TextEditor.Controller
         public string actualFile { get; set; }
         private int actualFileType { get; set; }
         private string actualText { get; set; }
+        private bool saved { get; set; }
 
         public CommandController()
         {
@@ -22,6 +23,12 @@ namespace TextEditor.Controller
             actualFile = "";
             actualFileType = 0;
             actualText = "";
+            saved = false;
+        }
+
+        public bool IsSaved()
+        {
+            return saved;
         }
 
         public void useCommand(string commandStr, List<string> args)
@@ -43,10 +50,14 @@ namespace TextEditor.Controller
             actualText = "";
         }
 
-        public void SaveCommand()
+        public void SaveCommand(RichTextBox rtb)
         {
-            List<string> args = new List<string>() { actualFile,  };
-            Save command = (Save) getCommand("save", args);
+            if (!(actualFile == ""))
+            {
+                List<string> args = new List<string>() {rtb.Rtf, actualFile, actualFileType.ToString() };
+                Save command = (Save) getCommand("save", args);
+                command.execute();
+            }
         }
 
         public void SaveAsCommand(RichTextBox rtb, string fileName, int filterIndex)
@@ -54,11 +65,16 @@ namespace TextEditor.Controller
             List<string> args = new List<string>() { rtb.Rtf, fileName, filterIndex.ToString() };
             SaveAs command = (SaveAs) getCommand("saveas", args);
             command.execute();
+            saved = true;
+            actualFile = fileName;
+            actualFileType = filterIndex;
         }
 
         public string OpenCommand(string fileName, int filterIndex)
         {
+            saved = true;
             actualFile = fileName;
+            actualFileType = filterIndex;
             List<string> args = new List<string>() { fileName, filterIndex.ToString() };
             Open command = (Open) getCommand("open", args);
             string text = command.getText();

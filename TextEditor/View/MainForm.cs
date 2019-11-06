@@ -43,7 +43,17 @@ namespace TextEditor
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            controller.SaveCommand();
+            if (controller.IsSaved())
+            {
+                controller.SaveCommand(richTextBox);
+            } else
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    controller.SaveAsCommand(richTextBox, saveFileDialog1.FileName, saveFileDialog1.FilterIndex);
+                }
+            }
+            
         }
 
         private void buttonSaveAs_Click(object sender, EventArgs e)
@@ -103,13 +113,14 @@ namespace TextEditor
         private void textChangeEvent(object sender, EventArgs e)
         {
             string text = richTextBox.Text;
-            
+            /*
             if(text.ElementAt(text.Length - 1) == ' ')
             {
                 Console.WriteLine("###########################");
                 controller.setState(richTextBox.Text);
             }
-            
+            */
+            controller.setState(richTextBox.Text);
         }
 
         private void Button1_Click(object sender, EventArgs e)

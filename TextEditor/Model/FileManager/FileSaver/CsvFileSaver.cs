@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TextEditor.Model.FileSaver
 {
-    class CsvFileSaver
+    class CsvFileSaver : IFileSaver
     {
+        public void save(string txt, string file)
+        {
+            string formatted = txt.Replace(" ", ",");
+            System.IO.File.WriteAllText(file, formatted);
+        }
     }
 }

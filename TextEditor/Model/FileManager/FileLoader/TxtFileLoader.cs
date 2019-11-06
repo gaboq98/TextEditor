@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TextEditor.Model.FileLoader
 {
-    class TxtFileLoader
+    class TxtFileLoader : IFileLoader
     {
+        public string load(string file)
+        {
+            string text = System.IO.File.ReadAllText(file);
+            return text;
+        }
     }
 }

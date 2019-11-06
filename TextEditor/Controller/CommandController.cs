@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TextEditor.Model.Commands;
 
 namespace TextEditor.Controller
@@ -48,9 +49,9 @@ namespace TextEditor.Controller
             Save command = (Save) getCommand("save", args);
         }
 
-        public void SaveAsCommand(string fileName, int filterIndex)
+        public void SaveAsCommand(RichTextBox rtb, string fileName, int filterIndex)
         {
-            List<string> args = new List<string>() { fileName, filterIndex.ToString() };
+            List<string> args = new List<string>() { rtb.Rtf, fileName, filterIndex.ToString() };
             SaveAs command = (SaveAs) getCommand("saveas", args);
             command.execute();
         }

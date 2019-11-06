@@ -8,5 +8,6 @@ namespace TextEditor.Model.FileLoader
 {
     interface IFileLoader
     {
+        string load(String file);
     }
 }

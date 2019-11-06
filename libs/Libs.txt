@@ -1,0 +1,5 @@
+Open in Visual Studio Tools > NuGet Package Manager > Package Manager Console
+And run this commands
+
+Install-Package Newtonsoft.Json
+Install-Package iTextSharp -Version 5.5.13.1

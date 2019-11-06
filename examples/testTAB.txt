@@ -1,0 +1,9 @@
+	{\rtf1\ans	i\ansicpg1	252\deff0\	nouicompat	\deflang10	33{\fonttb	l{\f0\fnil	\fcharset0	 Arial Nar	row;}{\f1\	fnil\fchar	set0 Arial	;}{\f2\fni	l\fcharset	0 Arial Bl	ack;}}
+{\	colortbl ;	\red0\gree	n128\blue2	55;\red255	\green255\	blue255;\r	ed128\gree	n0\blue0;\	red128\gre	en0\blue25	5;\red255\	green128\b	lue192;}
+	{\*\genera	tor Riched	20 10.0.18	362}\viewk	ind4\uc1 	
+\pard\f0\	fs24 Test\	par
+\high	light1\b\f	1\fs29 Tes	t\highligh	t0\b0\f0\f	s24\par
+\	cf2\highli	ght3\i\f1\	fs32 Test\	cf0\highli	ght0\i0\f0	\fs24\par	
+\cf4\b\f2	\fs36 Test	\cf0\b0\f0	\fs24\par	
+\cf5\fs44	 Test\cf0\	fs24\par
+	}

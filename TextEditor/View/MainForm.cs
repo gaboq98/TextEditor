@@ -37,7 +37,7 @@ namespace TextEditor
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string text = controller.OpenCommand(openFileDialog1.FileName, openFileDialog1.FilterIndex);
-                richTextBox.Text = text;
+                richTextBox.Rtf = text;
             }
         }
 
@@ -50,7 +50,7 @@ namespace TextEditor
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                controller.OpenCommand(saveFileDialog1.FileName, saveFileDialog1.FilterIndex);
+                controller.SaveAsCommand(richTextBox, saveFileDialog1.FileName, saveFileDialog1.FilterIndex);
             }
         }
 
@@ -112,5 +112,12 @@ namespace TextEditor
             
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox.SelectionBackColor = colorDialog1.Color;
+            }
+        }
     }
 }

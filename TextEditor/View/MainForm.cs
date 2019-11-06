@@ -102,7 +102,14 @@ namespace TextEditor
 
         private void textChangeEvent(object sender, EventArgs e)
         {
-            controller.setState(richTextBox.Text);
+            string text = richTextBox.Text;
+            
+            if(text.ElementAt(text.Length - 1) == ' ')
+            {
+                Console.WriteLine("###########################");
+                controller.setState(richTextBox.Text);
+            }
+            
         }
 
     }

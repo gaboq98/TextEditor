@@ -37,6 +37,7 @@ namespace TextEditor.Model.Commands
         {
             originator.setState(text);
             caretaker.add( originator.saveStateToMemento());
+            //caretaker.clear();
         }
 
         public ICommand GetCommand(String commandStr, List<string> args)

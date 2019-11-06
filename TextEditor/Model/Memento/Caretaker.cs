@@ -14,13 +14,13 @@ namespace TextEditor.Model.Memento
 
         public Caretaker()
         {
-            currentIndex = 0;
+            currentIndex = -1;
         }
 
         public void add(Memento state)
         {
             mementoList.Add(state);
-            currentIndex++;
+            currentIndex = mementoList.Count - 1;
         }
 
         public Memento get(int index)
@@ -58,6 +58,17 @@ namespace TextEditor.Model.Memento
             }
             return getCurrent();
         }
+
+        public void clear()
+        {
+            List<Memento> newList = new List<Memento>();
+            for(int i = 0; i < currentIndex; i++)
+            {
+                newList.Add(mementoList.ElementAt(i));
+            }
+            mementoList = newList;
+        }
+
 
     }
 }
